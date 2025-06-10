@@ -1,0 +1,25 @@
+{% extends './base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}Edit money transfer{% endblock title %}
+{% block page_title %}Edit money transfer{% endblock page_title %}
+{% block breadcrumb %}
+    <ol class="breadcrumb pt-0 ps-4">
+        <li class="breadcrumb-item active" aria-current="page"><a href="{% url 'home' %}">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page"><a href="{% url 'money-transfer' %}">Money transfer</a></li>
+    </ol>
+{% endblock %}
+{% block content %}
+    <div class="row">
+        <div class="card col-md-12 pt-3 pb-3">
+            <div class="">
+                <form method="post">
+                    {% csrf_token %}
+                    <div>{% crispy form %}
+                        <button type="submit" class="btn btn-primary btn-lg">Save</button>
+                        <a class="btn btn-danger btn-lg" href="{{ view.success_url }}">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

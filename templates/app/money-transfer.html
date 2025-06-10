@@ -1,0 +1,35 @@
+{% extends './base.html' %}
+{% block title %}Money Transfer{% endblock title %}
+{% block page_title %}Money Transfer{% endblock page_title %}
+{% block title_right_side %}
+    <div class="top-right-button-container">
+        <a href="{% url 'money-transfer-create' %}" class="btn btn-primary btn-lg top-right-button mr-1">New money transfer</a>
+    </div>
+{% endblock %}
+{% block breadcrumb %}
+    <ol class="breadcrumb pt-0 ps-4">
+        <li class="breadcrumb-item active" aria-current="page"><a href="{% url 'home' %}">Home</a></li>
+    </ol>
+{% endblock %}
+{% block content %}
+    <div class="card p-4">
+        <table id="transferTable" class="table table-hover">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Platform</th>
+                <th>Amount CAD</th>
+                <th>Amount USD</th>
+                <th>Date</th>
+            </tr>
+            </thead>
+        </table>
+    </div>
+    {% include 'app/snippets/MoneyTransferModal.html' %}
+{% endblock %}
+{% block script %}
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.3.1/css/dataTables.dataTables.css"/>
+    <script src="https://cdn.datatables.net/2.3.0/js/dataTables.min.js"></script>
+    <script src="../../static/js/moneyTransfer.js"></script>
+    <script>const csrfToken = '{{ csrf_token }}';</script>
+{% endblock %}

@@ -1,0 +1,132 @@
+{% extends "./base.html" %}
+{% block title %}Home{% endblock title %}
+{% block page_title %}Budget Tracker{% endblock page_title %}
+{% block title_right_side %}
+    <div class="top-right-button-container d-flex   ">
+        <span class="pe-2">CAD</span>
+        <div class="custom-switch custom-switch-primary mb-2">
+            <input class="custom-switch-input" id="switch" type="checkbox">
+            <label class="custom-switch-btn" for="switch"></label>
+        </div>
+        <span class="ps-2">USD</span>
+    </div>
+{% endblock %}
+{% block breadcrumb %}
+    <ol class="breadcrumb pt-0 ps-4">
+        <li class="breadcrumb-item active" aria-current="page">Home</li>
+    </ol>
+{% endblock %}
+{% block content %}
+    <div class="row">
+        <div class="col-xl-4 col-lg-4">
+            <div class="card mb-4 progress-banner">
+                <div class="card-body justify-content-between d-flex flex-row align-items-center">
+                    <div><i class="iconsminds-file mr-2 text-white align-text-bottom d-inline-block"></i>
+                        <div><p class="lead text-white">Total spent this month</p>
+                            <p class="text-small text-white" id="total-expenses"></p></div>
+                    </div>
+                    <div>
+                        <div role="progressbar" class="progress-bar-circle progress-bar-banner position-relative"
+                             data-color="white" data-trail-color="rgba(255,255,255,0.2)" aria-valuenow="5"
+                             aria-valuemax="12" data-show-percent="false">
+                            <svg viewBox="0 0 100 100" style="display: block; width: 100%;">
+                                <path d="M 50,50 m 0,-48 a 48,48 0 1 1 0,96 a 48,48 0 1 1 0,-96"
+                                      stroke="rgba(255,255,255,0.2)" stroke-width="4" fill-opacity="0"></path>
+                                <path d="M 50,50 m 0,-48 a 48,48 0 1 1 0,96 a 48,48 0 1 1 0,-96" stroke="white"
+                                      stroke-width="4" fill-opacity="0"
+                                      style="stroke-dasharray: 301.635, 301.635; stroke-dashoffset: 0;"></path>
+                            </svg>
+                            <div class="progressbar-text"
+                                 style="position: absolute; left: 50%; top: 50%; padding: 0px; margin: 0px; transform: translate(-50%, -50%); color: white;">
+                                ${{ expenses_this_month|floatformat:2 }} {{ currency }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-4 col-lg-4">
+            <div class="card mb-4 progress-banner">
+                <div class="card-body justify-content-between d-flex flex-row align-items-center">
+                    <div><i class="iconsminds-male mr-2 text-white align-text-bottom d-inline-block"></i>
+                        <div><p class="lead text-white">Total incomings</p>
+                            <p class="text-small text-white" id="stadistics-incomings"></p></div>
+                    </div>
+                    <div>
+                        <div role="progressbar" class="progress-bar-circle progress-bar-banner position-relative"
+                             data-color="white" data-trail-color="rgba(255,255,255,0.2)" aria-valuenow="4"
+                             aria-valuemax="6" data-show-percent="false">
+                            <svg viewBox="0 0 100 100" style="display: block; width: 100%;">
+                                <path d="M 50,50 m 0,-48 a 48,48 0 1 1 0,96 a 48,48 0 1 1 0,-96"
+                                      stroke="rgba(255,255,255,0.2)" stroke-width="4" fill-opacity="0"></path>
+                                <path d="M 50,50 m 0,-48 a 48,48 0 1 1 0,96 a 48,48 0 1 1 0,-96" stroke="white"
+                                      stroke-width="4" fill-opacity="0"
+                                      style="stroke-dasharray: 301.635, 301.635; stroke-dashoffset: 0;"></path>
+                            </svg>
+                            <div class="progressbar-text"
+                                 style="position: absolute; left: 50%; top: 50%; padding: 0px; margin: 0px; transform: translate(-50%, -50%); color: white;">
+                                ${{ incoming_this_month|floatformat:2 }} {{ currency }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-4 col-lg-4">
+            <div class="card mb-4 progress-banner"><a href="#"
+                                                      class="card-body justify-content-between d-flex flex-row align-items-center">
+                <div><i class="iconsminds-bell mr-2 text-white align-text-bottom d-inline-block"></i>
+                    <div><p class="lead text-white">The biggest expense is</p>
+                        <p class="text-small text-white" id="biggest-expense-category"></p></div>
+                </div>
+                <div>
+                    <div role="progressbar" class="progress-bar-circle progress-bar-banner position-relative"
+                         data-color="white" data-trail-color="rgba(255,255,255,0.2)" aria-valuenow="8"
+                         aria-valuemax="10" data-show-percent="false">
+                        <svg viewBox="0 0 100 100" style="display: block; width: 100%;">
+                            <path d="M 50,50 m 0,-48 a 48,48 0 1 1 0,96 a 48,48 0 1 1 0,-96"
+                                  stroke="rgba(255,255,255,0.2)" stroke-width="4" fill-opacity="0"></path>
+                            <path d="M 50,50 m 0,-48 a 48,48 0 1 1 0,96 a 48,48 0 1 1 0,-96" stroke="white"
+                                  stroke-width="4" fill-opacity="0"
+                                  style="stroke-dasharray: 301.635, 301.635; stroke-dashoffset: 0;"></path>
+                        </svg>
+                        <div class="progressbar-text"
+                             style="position: absolute; left: 50%; top: 50%; padding: 0px; margin: 0px; transform: translate(-50%, -50%); color: white;">
+                                ${{ biggest_expense|floatformat:2 }} {{ currency }}
+                        </div>
+                    </div>
+                </div>
+            </a></div>
+        </div>
+    </div>
+    <div class="row">
+        <br>
+        <hr>
+        <div id="donutGraph" class="container d-flex flex-wrap justify-content-evenly mt-5 mb-5">
+            <div id="donut1">
+                <h3 class="text-center">Distribution of Expenses</h3>
+                <canvas id="myDoughnut1" width="500px"></canvas>
+            </div>
+            <div id="donut2">
+                <h3 class="text-center">Distribution of Incoming</h3>
+                <canvas id="myDoughnut2" width="500px"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <br>
+        <hr>
+        <h3 class="text-center">Data from the last 6 months</h3>
+        <div id="lineGraph" class="container mt-5 mb-5">
+            <div id="line1">
+                <canvas id="historyData"></canvas>
+            </div>
+
+        </div>
+    </div>
+{% endblock content %}
+{% block script %}
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="module" src="../../static/js/graphs.js"></script>
+{% endblock script %}
