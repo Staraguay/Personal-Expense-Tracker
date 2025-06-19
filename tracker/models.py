@@ -73,6 +73,8 @@ class Transaction(DefaultModel):
     isd = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
     tax_ec = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
 
+    def __str__(self):
+        return f'{self.value_cad} - {self.value_usd} - {self.description}'
 
 class MoneyTransfer(DefaultModel):
     platform = models.CharField(max_length=100, null=False, blank=False)
@@ -85,6 +87,9 @@ class MoneyTransfer(DefaultModel):
     isd = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
     tax = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
 
+    def __str__(self):
+        return f'{self.usd_value} - {self.platform}'
+
 
 class Profile(models.Model):
     CURRENCY = [('USD','USD')]
@@ -93,3 +98,6 @@ class Profile(models.Model):
                                      blank=False)
     age = models.IntegerField(verbose_name='age', null=True, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='user', related_name='profile')
+
+    def __str__(self):
+        return f'{self.user.email} - {self.job_position}'
