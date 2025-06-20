@@ -2,9 +2,7 @@ $(document).ready(function () {
 
     $('#transactionTable').DataTable({
         columnDefs: [
-            {targets: [5, 6, 7], orderable: false},
-            {targets: 5, className: "text-end"},
-            {targets: 7, className: "text-start"},
+            {targets: [6, 7, 8], orderable: false},
         ],
         ajax: {
             url: '/api/transactions',
@@ -41,6 +39,9 @@ $(document).ready(function () {
                 render: (data, type, row) => {
                     if (!data) return '';
                     const date = new Date(data);
+                    if (type === 'sort') {
+                        return date.toISOString().split('T')[0]; // Formato YYYY-MM-DD para ordenar
+                    }
                     return date.toLocaleString('es-ES', {timeZone: 'America/Bogota'});
                 },
 
