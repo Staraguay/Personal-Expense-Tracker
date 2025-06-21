@@ -3,6 +3,8 @@ from datetime import datetime
 from django import setup
 from django.test import TestCase, Client
 from django.urls import reverse
+
+from tracker.forms import TransactionForm, MoneyTransferForm
 from tracker.models import *
 from django.core.exceptions import ValidationError
 
@@ -121,3 +123,36 @@ class BudgetTrackerTests(TestCase):
             self.assertEqual(response['Content-Type'], 'application/json')
             data = json.loads(response.content)
             self.assertGreater(len(data), 0)
+
+    def test_new_transaction_form(self):
+        form_data = {
+            'value_cad': 10.0,
+            'value_usd': 7.0,
+            'description': 'Test Transaction',
+            'shop': 'Walmart',
+            'transaction_type': 'Expenses',
+            'category': 'Groceries',
+            'payment_type': 'Debit Card CAD',
+            'isd': 0.0,
+            'tax_ec': 0.0,
+            'date': datetime.now(),
+        }
+
+        form = TransactionForm(data=form_data)
+        self.assertTrue(form.is_valid())
+
+    def test_new_money_transfer_form(self):
+        form_data = {
+            'platform': 'Wise',
+            'usd_value': 7.0,
+            'cad_value': 10.0,
+            'commission': 1.50,
+            'date': datetime.now(),
+            'change_rate': 1.37,
+            'processing_days': 1,
+            'isd': 0.0,
+            'tax': 0.0,
+        }
+
+        form = MoneyTransferForm(data=form_data)
+        self.assertTrue(form.is_valid())

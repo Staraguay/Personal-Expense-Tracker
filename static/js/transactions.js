@@ -1,7 +1,11 @@
 $(document).ready(function () {
 
     $('#transactionTable').DataTable({
+        responsive: true,
         columnDefs: [
+            { responsivePriority: 1, targets: 2},
+            { responsivePriority: 2, targets: 3},
+            { responsivePriority: 3, targets: 7},
             {targets: [6, 7, 8], orderable: false},
         ],
         ajax: {

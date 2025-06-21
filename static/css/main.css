@@ -2072,8 +2072,8 @@ footer.page-footer .footer-content {
 
 @media (max-width: 1199px) {
     .progress-banner .progress-bar-circle.progress-bar-banner {
-        width: 80px;
-        height: 80px;
+        width: 100px;
+        height: 100px;
     }
 }
 

@@ -30,8 +30,13 @@
     {% include 'app/snippets/TransactionDetailModal.html' %}
 {% endblock %}
 {% block script %}
-    <link rel="stylesheet" href="https://cdn.datatables.net/2.3.1/css/dataTables.dataTables.css"/>
-    <script src="https://cdn.datatables.net/2.3.0/js/dataTables.min.js"></script>
+    <link href="https://cdn.datatables.net/v/dt/dt-2.3.2/r-3.0.4/datatables.min.css" rel="stylesheet"
+          integrity="sha384-POxkuvwUaICNIPVw18ueDXiwsjRlBy5HdC0o2oMk/hZlXRyT+/UhsBD3nFlACKSX" crossorigin="anonymous">
+
+    <script src="https://cdn.datatables.net/v/dt/dt-2.3.2/r-3.0.4/datatables.min.js"
+            integrity="sha384-Ej5tWklesVKmgubUcE/IGa/bJc6L/lbjJPZXuZ2ruFMJ74X+BwRFpzMUyknsPeMk"
+            crossorigin="anonymous"></script>
+
     <script src="../../static/js/transactions.js"></script>
     <script>
         const csrfToken = '{{ csrf_token }}';

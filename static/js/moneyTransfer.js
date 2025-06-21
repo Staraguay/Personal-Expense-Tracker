@@ -1,7 +1,12 @@
 $(document).ready(function () {
     $('#transferTable').DataTable({
-
-        columnDefs: [{orderable: false, targets: [5, 6, 7]}],
+        responsive: true,
+        columnDefs: [
+            {responsivePriority: 1, targets: 2},
+            {responsivePriority: 2, targets: 3},
+            {responsivePriority: 3, targets: 6},
+            {orderable: false, targets: [5, 6, 7]}
+        ],
         ajax: {
             url: '/api/money-transfer',
             dataSrc: ''
